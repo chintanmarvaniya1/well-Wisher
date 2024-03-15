@@ -12,15 +12,31 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-function dailyQuoteMailOption(User) {
+function dailyQuoteMailOption(User,Quote) {
     return {
         from:{
-            name: "Mail",
+            name: "Well Wisher",
             address: process.env.EMAIL
         },
         to: User.email,
-        subject:`Hello ${User.firstname}`,
-        text:`Hello ${User}`
+        subject:`Good Morning....!!!! ${User.firstname}`,
+        html:`<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+
+        <div style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; text-align: center;">
+          <h2 style="color: #333; ">Daily Inspiration</h2>
+          <hr style="border: 1px solid #ccc; margin-bottom: 20px;">
+          
+          <div style="margin-bottom: 20px;">
+            <img src="https://i0.wp.com/onlymyenglish.com/wp-content/uploads/love-good-morning.png?resize=700%2C750&ssl=1" alt="Good Morning" style="max-width: 100%; height: auto; border-radius: 8px;">
+          </div>
+      
+          <h1 style="color: #666;  line-height: 1;">${Quote}</h1>
+      
+          <p style="color: #666; font-size: 12px; line-height: 1;">Have a wonderful day ahead!</p>
+      
+        </div>
+      
+    </body>`
     }
 }
 
