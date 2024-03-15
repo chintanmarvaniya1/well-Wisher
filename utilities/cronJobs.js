@@ -1,22 +1,34 @@
 const AllUser = require("../controllers/getAllUserController");
-const sendMail = require("./sendMail");
+const {transporter,createMailOption} = require("./sendMail");
 const cron = require('node-cron');
 
+
 const sheduleCronJobs = async () =>{
-    //const userList = await AllUser();
-    const userList = ['chintanmarvaniya2001@gmail.com','servermonk26@gmail.com']
-    try {
-        cron.schedule('*/10 * * * * *',()=>{
-            if(userList){
-                userList.forEach(user => {
-                    sendMail(user)
-                });
-            }else{
-                console.log("User List is empty");
-            }
-        })
-    } catch (error) {
-        console.log(error)
+    const userList = await AllUser();
+    console.log(userList);
+    if(userList.success){
+        try {
+            users = userList.userList
+            cron.schedule('*/10 * * * * *',()=>{
+                if(users){
+                    users.forEach(user => {
+                        var mailOption = createMailOption(user)
+                        try {
+                            transporter.sendMail(mailOption)
+                            console.log("success");
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    });
+                }else{
+                    console.log("User List is empty");
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }else{
+        console.log("Issue in getting User Data from Database");
     }
 }
 
