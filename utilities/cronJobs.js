@@ -1,5 +1,6 @@
 const AllUser = require("../controllers/getAllUserController");
-const {transporter,createMailOption} = require("./sendMail");
+const genrateLogs = require("./logs");
+const {transporter,dailyQuoteMailOption} = require("./sendMail");
 const cron = require('node-cron');
 
 
@@ -9,26 +10,32 @@ const sheduleCronJobs = async () =>{
     if(userList.success){
         try {
             users = userList.userList
+            genrateLogs(`Execution of Cron Job started`)
             cron.schedule('*/10 * * * * *',()=>{
                 if(users){
                     users.forEach(user => {
-                        var mailOption = createMailOption(user)
+                        var mailOption = dailyQuoteMailOption(user)
                         try {
-                            transporter.sendMail(mailOption)
-                            console.log("success");
+                            transporter.sendMail(mailOption,(error,info)=>{
+                                if(error){
+                                    genrateLogs(`Error in sending Eamil to ${user.email } : ${error} `)                
+                                }else{
+                                    genrateLogs(`Message Details for ${user.email} : ${info.response} `)
+                                }
+                            })
                         } catch (error) {
-                            console.log(error);
+                            genrateLogs(`Error in sending Eamil : ${error}`)
                         }
                     });
                 }else{
-                    console.log("User List is empty");
+                    genrateLogs(`No User Present in DB.}`)
                 }
             })
         } catch (error) {
-            console.log(error)
+            genrateLogs(`Issue In Running Cron Jobs`)
         }
     }else{
-        console.log("Issue in getting User Data from Database");
+        genrateLogs(`Issue in Getting User Data from DB`)
     }
 }
 

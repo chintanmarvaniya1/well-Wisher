@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-function createMailOption(User) {
-    return dailyMailOption  = {
+function dailyQuoteMailOption(User) {
+    return {
         from:{
             name: "Mail",
             address: process.env.EMAIL
@@ -24,4 +24,4 @@ function createMailOption(User) {
     }
 }
 
-module.exports = {transporter,createMailOption}
+module.exports = {transporter,dailyQuoteMailOption}
