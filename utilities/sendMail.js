@@ -1,32 +1,27 @@
 const nodemailer = require('nodemailer');
 
-const sendDailyMail = async (User) =>{
-    try {
-        const transporter = nodemailer.createTransport({
-            service:'gmail',
-            host:'smtp.gmail.com',
-            port:587,
-            secure:false,
-            auth:{
-                user:process.env.EMAIL,
-                pass:process.env.PASS
-            }
-        })
-        const dailyMailOption = (User) = {
-            from:{
-                name: "Mail",
-                address: process.env.EMAIL
-            },
-            to: User,
-            subject:`Hello ${User}`,
-            text:`Hello ${User}`
-        }
 
-        transporter.sendMail(dailyMailOption)
-        console.log("success");
-    } catch (error) {
-        console.log(error);
+const transporter = nodemailer.createTransport({
+    service:'gmail',
+    host:'smtp.gmail.com',
+    port:587,
+    secure:false,
+    auth:{
+        user:process.env.EMAIL,
+        pass:process.env.PASS
+    }
+})
+
+function dailyQuoteMailOption(User) {
+    return {
+        from:{
+            name: "Mail",
+            address: process.env.EMAIL
+        },
+        to: User.email,
+        subject:`Hello ${User.firstname}`,
+        text:`Hello ${User}`
     }
 }
 
-module.exports = sendDailyMail
+module.exports = {transporter,dailyQuoteMailOption}
