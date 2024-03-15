@@ -1,6 +1,4 @@
 Execution of Cron Job started 
-Message Details for cms.tools01@gmail.com : 250 2.0.0 OK  1710502803 f5-20020a056a000b0500b006e67edb113fsm3169523pfu.219 - gsmtp  
-Message Details for servermonk26@gmail.com : 250 2.0.0 OK  1710502803 k2-20020a170902c40200b001dddc0f1e0asm3595135plk.106 - gsmtp  
-Message Details for chintanmarvaniya2001@gmail.com : 250 2.0.0 OK  1710502803 h2-20020a170902f54200b001dd6f305a81sm3556490plf.293 - gsmtp  
-Message Details for ashleshapd3008@gmail.com : 250 2.0.0 OK  1710502803 x4-20020a170902a38400b001dc05537e10sm3624642pla.236 - gsmtp  
-Message Details for himachal.040124@gmail.com : 250 2.0.0 OK  1710502804 i62-20020a636d41000000b005e47afd5c5dsm2322961pgc.37 - gsmtp  
+Message Details for servermonk26@gmail.com : 250 2.0.0 OK  1710528911 b3-20020a170903228300b001dd42bbb08asm4214132plh.253 - gsmtp  
+Message Details for himachal.040124@gmail.com : 250 2.0.0 OK  1710528911 y9-20020a17090264c900b001def0897284sm1909922pli.76 - gsmtp  
+Message Details for chintanmarvaniya2001@gmail.com : 250 2.0.0 OK  1710528911 x9-20020a056a00270900b006e6b4613de1sm3699872pfv.104 - gsmtp  

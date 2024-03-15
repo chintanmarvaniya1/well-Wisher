@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const user = require("./routes/userRoutes");
 const quote = require("./routes/quoteRoutes");
-const sheduleCronJobs = require("./utilities/cronJobs");
+const dailyCronJobs = require("./utilities/dailyCronJobs");
+const DOBCronJob = require("./utilities/DOBCronJobs");
 
-sheduleCronJobs()
+dailyCronJobs()
+DOBCronJob()
 
 app.use(express.json());
 app.use('/api',user)

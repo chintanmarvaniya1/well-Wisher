@@ -40,4 +40,37 @@ function dailyQuoteMailOption(User,Quote) {
     }
 }
 
-module.exports = {transporter,dailyQuoteMailOption}
+function DOBMailOption(User) {
+    return {
+        from:{
+            name: "Well Wisher",
+            address: process.env.EMAIL
+        },
+        to: User.email,
+        subject:`Happy Birthday....!!!! ${User.firstname}`,
+        html:`<body>
+        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+        
+          <div style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px;">
+            <h2 style="color: #333; text-align: center;">Happy Birthday!</h2>
+            <hr style="border: 1px solid #ccc; margin-bottom: 20px;">
+            
+            <div style="text-align: center;">
+              <img src="https://www.wishesmsg.com/wp-content/uploads/Happy-Birthday.jpg" alt="Birthday Cake" style="max-width: 100%; height: auto; border-radius: 8px;">
+            </div>
+        
+            <p style="color: #666; font-size: 18px; line-height: 1.6; text-align: center;">
+              Wishing you a day filled with love, joy, and laughter! May all your dreams and wishes come true on this special day.
+            </p>
+        
+            <p style="color: #666; font-size: 18px; line-height: 1.6; text-align: center;">
+              Have a fantastic birthday celebration!
+            </p>
+          </div>
+        
+        </body>
+      </body>`
+    }
+}
+
+module.exports = {transporter,dailyQuoteMailOption,DOBMailOption}
