@@ -12,7 +12,7 @@ const sheduleCronJobs = async () =>{
         try {
             users = userList.userList
             genrateLogs(`Execution of Cron Job started`)
-            cron.schedule('10 17 * * *',()=>{
+            cron.schedule('00 10 * * *',()=>{
                 if(users){
                     users.forEach(user => {
                         var mailOption = dailyQuoteMailOption(user,quote)
