@@ -2,8 +2,8 @@ const USER= require("../models/userModel");
 
 const addUser = async (req, res) => {
     try {
-        const { firstname, lastname, email } = req.body;
-        if (firstname===undefined || lastname===undefined || email===undefined ) {
+        const { firstname, lastname, email,dob } = req.body;
+        if (firstname===undefined || lastname===undefined || email===undefined || dob===undefined) {
             return res.status(400).json({
                 success: false,
                 message: 'Required fields are not supplied'
@@ -19,6 +19,7 @@ const addUser = async (req, res) => {
             firstname:firstname,
             lastname:lastname,
             email:email,
+            dob:new Date(dob)
         }).then((success)=>{
             return res.status(200).json({
                 success: true,                

@@ -5,7 +5,7 @@ const {transporter,dailyQuoteMailOption} = require("./sendMail");
 const cron = require('node-cron');
 
 
-const sheduleCronJobs = async () =>{
+const dailyCronJob = async () =>{
     const userList = await AllUser();
     var quote = await getTodaysQuote();
     if(userList.success){
@@ -40,4 +40,4 @@ const sheduleCronJobs = async () =>{
     }
 }
 
-module.exports = sheduleCronJobs
+module.exports = dailyCronJob
