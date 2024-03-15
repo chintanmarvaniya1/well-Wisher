@@ -1,20 +1,21 @@
 const AllUser = require("../controllers/getAllUserController");
 const genrateLogs = require("./logs");
+const getTodaysQuote = require("./getTodaysQuote");
 const {transporter,dailyQuoteMailOption} = require("./sendMail");
 const cron = require('node-cron');
 
 
 const sheduleCronJobs = async () =>{
     const userList = await AllUser();
-    console.log(userList);
+    var quote = await getTodaysQuote();
     if(userList.success){
         try {
             users = userList.userList
             genrateLogs(`Execution of Cron Job started`)
-            cron.schedule('00 16 * * * ',()=>{
+            cron.schedule('10 17 * * *',()=>{
                 if(users){
                     users.forEach(user => {
-                        var mailOption = dailyQuoteMailOption(user)
+                        var mailOption = dailyQuoteMailOption(user,quote)
                         try {
                             transporter.sendMail(mailOption,(error,info)=>{
                                 if(error){
